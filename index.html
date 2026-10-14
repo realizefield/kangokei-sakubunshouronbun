@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>看護学校 作文・小論文 GAMBA</title>
+<style>
+:root{
+  --bg:#f3fbff; --card:#ffffff; --ink:#26364a; --sub:#5d7089;
+  --blue:#3aa9e8; --blue-d:#1f86c4; --blue-l:#e0f3fd;
+  --sun:#ffc93c; --sun-l:#fff6d6; --coral:#ff7a6b; --coral-l:#ffe8e4;
+  --mint:#4cc9a0; --mint-l:#e0f7ef; --line:#d7e8f3;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif;line-height:1.8;font-size:16px}
+header{background:linear-gradient(135deg,#3aa9e8,#6fd0f5);color:#fff;padding:18px 16px 14px}
+header h1{margin:0;font-size:20px;letter-spacing:.04em}
+header p{margin:2px 0 0;font-size:13px;opacity:.95}
+nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:2px solid var(--line);display:flex;overflow-x:auto;gap:4px;padding:6px 8px}
+nav button{flex:0 0 auto;border:0;background:var(--blue-l);color:var(--blue-d);font-weight:700;font-size:14px;padding:8px 12px;border-radius:999px;cursor:pointer;font-family:inherit}
+nav button.on{background:var(--blue);color:#fff}
+main{max-width:860px;margin:0 auto;padding:14px 14px 80px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
+h2{font-size:19px;margin:0 0 8px;color:var(--blue-d)}
+h3{font-size:16px;margin:14px 0 4px;color:var(--ink)}
+.warn{background:var(--coral-l);border:2px solid var(--coral);border-radius:14px;padding:14px}
+.warn b{color:#c8402f}
+.tip{background:var(--sun-l);border-left:6px solid var(--sun);padding:10px 12px;border-radius:8px;margin:10px 0}
+.ok{background:var(--mint-l);border-left:6px solid var(--mint);padding:10px 12px;border-radius:8px;margin:10px 0}
+.btn{display:inline-block;border:0;background:var(--blue);color:#fff;font-weight:700;font-size:16px;padding:12px 20px;border-radius:12px;cursor:pointer;font-family:inherit}
+.btn.sun{background:var(--sun);color:#5a4200}
+.btn.line{background:#fff;color:var(--blue-d);border:2px solid var(--blue)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+.tile{display:block;text-align:left;border:2px solid var(--line);background:#fff;border-radius:16px;padding:14px;cursor:pointer;font-family:inherit;color:inherit}
+.tile:hover{border-color:var(--blue)}
+.tile .ic{font-size:26px}
+.tile b{display:block;font-size:17px;color:var(--blue-d)}
+label{display:block;font-weight:700;margin:14px 0 4px}
+label small{font-weight:400;color:var(--sub)}
+input[type=text],input[type=number],select,textarea{width:100%;font-size:16px;font-family:inherit;border:2px solid var(--line);border-radius:10px;padding:10px;background:#fcfeff;color:var(--ink)}
+textarea{min-height:92px}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--blue)}
+.chk{display:flex;flex-wrap:wrap;gap:8px}
+.chk label{display:flex;align-items:center;gap:6px;margin:0;font-weight:500;background:var(--blue-l);border-radius:999px;padding:6px 12px}
+.chk input{width:auto}
+.badge{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;margin-right:6px}
+.b-sei{background:var(--blue-l);color:var(--blue-d)} .b-jun{background:var(--mint-l);color:#1d8b69} .b-stop{background:var(--coral-l);color:#c8402f}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.pill{background:var(--sun-l);border:1px solid var(--sun);border-radius:999px;padding:2px 10px;font-size:13px}
+table.cmp{border-collapse:collapse;width:100%;font-size:13px;min-width:720px}
+table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}
+table.cmp th{background:var(--blue-l);color:var(--blue-d);position:sticky;top:0}
+.scroll{overflow-x:auto;border-radius:10px}
+.kv{display:grid;grid-template-columns:8.5em 1fr;gap:4px 10px;font-size:15px}
+.kv dt{font-weight:700;color:var(--sub)} .kv dd{margin:0}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0}
+.progress i{display:block;height:100%;background:var(--mint)}
+pre.ex{white-space:pre-wrap;font-family:inherit;background:var(--blue-l);border-radius:10px;padding:10px;margin:6px 0}
+.small{font-size:13px;color:var(--sub)}
+.hide{display:none!important}
+.sheet h3{border-bottom:2px solid var(--sun);padding-bottom:2px}
+.sheet p,.sheet li{margin:2px 0}
+.demos{display:flex;flex-wrap:wrap;gap:16px;margin:8px 0}
+.demo{text-align:center;max-width:150px}
+.demo .col{display:inline-flex;flex-direction:column;border:2px solid var(--blue);border-radius:4px;background:#fff}
+.mas{width:38px;height:38px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:22px;writing-mode:vertical-rl;color:var(--ink)}
+.mas:last-child{border-bottom:0}
+.mas.eng{writing-mode:horizontal-tb;font-size:15px;letter-spacing:-1px}
+.demo .cap{font-size:12px;color:var(--sub);line-height:1.4;margin-top:4px}
+.feat{background:var(--blue-l);border-radius:12px;padding:10px 12px;margin:10px 0}
+.feat dt{font-weight:700;color:var(--blue-d)} .feat dd{margin:0 0 6px}
+.pill.tag{background:var(--blue-l);border-color:var(--blue)}
+
+.notebook{display:flex;flex-direction:column;gap:14px}
+.sheet{display:contents}
+.face{background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px}
+.face.cover{order:1}.face.p2{order:2}.face.p3{order:3}.face.back{order:4}
+.fbar{color:#fff;font-weight:700;font-size:14px;padding:4px 10px;border-radius:6px;margin:12px 0 6px}
+.fbar.blue{background:var(--blue)}.fbar.sun{background:var(--sun);color:#5a4200}.fbar.mint{background:var(--mint)}.fbar.coral{background:var(--coral)}
+.fld{margin:6px 0}.fl{font-weight:700;font-size:14px}.fl small{font-weight:400;color:var(--sub)}
+.face .ro{border:2px solid var(--line);border-radius:8px;min-height:38px;padding:6px 10px;background:#fcfeff}
+.face .two{display:flex;gap:8px}
+.face h4{margin:10px 0 2px;color:var(--blue-d)}
+.face ul{margin:2px 0 2px 18px;padding:0;font-size:14px}.face ul.sm{font-size:13px}
+.hl{border-radius:8px;padding:6px 10px;margin:4px 0;font-size:14px}.hl.b{background:var(--blue-l)}.hl.y{background:var(--sun-l)}.hl.c{background:var(--coral-l)}
+.ttl{font-size:22px;font-weight:700;color:var(--blue-d);text-align:center;margin-top:16px}.ttl2{font-size:28px;font-weight:700;color:var(--coral);text-align:center}
+.c{text-align:center}.r{text-align:right;font-weight:700;color:var(--blue-d)}
+.chk.sm label{padding:3px 9px;font-size:14px}
+.btn{text-decoration:none}
+.gk-all{display:flex;flex-direction:column;gap:14px}
+.gk-wrap{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px;overflow-x:auto}
+.gk{display:flex;flex-direction:row-reverse;width:max-content;border:2px solid var(--blue);background:#fff}
+.gk-col{display:flex;flex-direction:column;border-left:1px solid var(--blue)}
+.gk-col:last-child{border-left:0}
+.gk-c{width:30px;height:30px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:19px;writing-mode:vertical-rl;color:var(--ink);line-height:1}
+.gk-c.eng{writing-mode:horizontal-tb;font-size:13px;letter-spacing:-1px}
+.gk-c.over{outline:2px solid var(--coral);outline-offset:-2px;font-size:13px}
+.gk-no{text-align:right;margin-top:2px}
+.gk-who{font-size:15px;padding:2px 4px}
+@media print{
+  @page note{size:364mm 257mm;margin:6mm}
+  .notebook{page:note;display:block}
+  .sheet{display:grid;grid-template-columns:1fr 1fr;gap:0;page-break-after:always;break-after:page}
+  .sheet:last-child{page-break-after:auto;break-after:auto}
+  .face{order:0!important;border:1px dashed #9ccbe6;border-radius:0;min-height:243mm;padding:8mm;font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .fbar,.hl,.chk label{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .face textarea,.face input[type=text],.face input[type=number]{border:1.5px solid #9ccbe6;font-size:12px;background:#fff;resize:none;overflow:hidden}
+  .face ul{font-size:11px}
+  main{padding:0;max-width:none}
+}
+@media print{
+  header,nav,.noprint,.btn{display:none!important}
+  body{background:#fff}.card{border:1px solid #999}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌸 看護学校 作文・小論文 GAMBA</h1>
+  <p>江原予備校　熊本県の正看護・准看護学校 受験対策<span id="who" style="margin-left:10px;font-weight:700"></span></p>
+</header>
+<nav id="nav" class="hide"></nav>
+<main id="app"></main>
+
+<script src="config.js"></script>
+<script src="gate.js"></script>
+<script src="schools.js"></script>
+<script src="features.js"></script>
+<script src="lessons.js"></script>
+<script>
+(function(){
+"use strict";
+var app=document.getElementById("app"), nav=document.getElementById("nav");
+var S={unlocked:false,pen:"",consent:false, tab:"home", kindFilter:"all", sel:[], lessonKey:null, lessonIdx:0, done:{}};
+var D={}; // 入力内容（画面内のみ）
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function nl(s){return esc(s).replace(/\n/g,"<br>")}
+function byId(id){for(var i=0;i<SCHOOLS.length;i++)if(SCHOOLS[i].id===id)return SCHOOLS[i]}
+function stopped(s){return /募集停止|閉校/.test(s.exam+s.message)&&s.kind==="准看"&&/募集停止（|募集停止済み|2026年度入学生を最後/.test(s.exam+s.message)}
+
+// 個人情報パターン検出
+var PII=[/0\d{1,4}[-ー−\s]?\d{1,4}[-ー−\s]?\d{3,4}/, /\d{3}[-ー−]\d{4}/, /[\w.+-]+@[\w-]+\.[\w.]+/, /〒/, /(県|市|町|村)[^\s]{0,8}(\d+丁目|\d+番地|\d+-\d+)/];
+function hasPII(t){for(var i=0;i<PII.length;i++)if(PII[i].test(t||""))return true;return false}
+
+var TABS=[["home","🏠 ホーム"],["sakubun","✏️ 作文の基礎"],["shouron","📝 小論文の基礎"],["genkou","🗒 原稿用紙のルール"],["research","🏫 志望校リサーチ"],["input","📓 素材ノート"],["sheet","📄 素材シート"],["essay","✍ 原稿用紙で書く"]];
+function drawNav(){
+  nav.className=(S.unlocked&&S.consent&&S.pen)?"":"hide";
+  nav.innerHTML=TABS.map(function(t){return '<button data-t="'+t[0]+'" class="'+(S.tab===t[0]?"on":"")+'">'+t[1]+'</button>'}).join("");
+  Array.prototype.forEach.call(nav.querySelectorAll("button"),function(b){b.onclick=function(){go(b.getAttribute("data-t"))}});
+}
+function go(t){S.tab=t; if(t==="sakubun"||t==="shouron"||t==="genkou"){S.lessonKey=t;S.lessonIdx=0} render(); window.scrollTo(0,0)}
+
+function render(){
+  drawNav();
+  var who=document.getElementById("who");if(who)who.textContent=S.pen?"ペンネーム："+S.pen:"";
+  if(!S.unlocked){app.innerHTML=viewGate();bindGate();return}
+  if(!S.consent){app.innerHTML=viewConsent();bindConsent();return}
+  if(!S.pen){app.innerHTML=viewPen();bindPen();return}
+  var v={home:viewHome,sakubun:viewLesson,shouron:viewLesson,genkou:viewLesson,research:viewResearch,input:viewInput,sheet:viewSheet,essay:viewEssay}[S.tab];
+  app.innerHTML=v();
+  var b={home:bindHome,sakubun:bindLesson,shouron:bindLesson,genkou:bindLesson,research:bindResearch,input:bindInput,sheet:bindSheet,essay:bindEssay}[S.tab];
+  if(b)b();
+}
+
+/* ---------- 同意 ---------- */
+function viewConsent(){return '<div class="card warn"><h2 style="color:#c8402f">⚠️ はじめに必ずお読みください</h2>'+
+ '<p><b>この画面には、住所・氏名・電話番号・メールアドレス・生年月日などの個人情報を、絶対に書かないでください。</b></p>'+
+ '<ul><li>学校名・会社名は、書かなくても大丈夫です（書く場合は任意です）。</li><li>お子さんの名前や年齢の詳しい情報も書かないでください。人数だけで十分です。</li><li>入力した内容は、あなたの端末の画面の中だけで使われます。このプログラムは、内容を外部に送信しません。</li><li>ブラウザを閉じると、入力内容は消えます。必要な場合は、画面の「印刷」や「テキスト保存」を使ってください。</li></ul></div>'+
+ '<div class="card"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:700"><input type="checkbox" id="agree" style="width:24px;height:24px;margin-top:4px"> <span>上の内容を読み、個人情報は書かないことに同意します。</span></label>'+
+ '<p style="margin-top:14px"><button class="btn" id="go" disabled>同意して始める</button></p></div>'}
+function bindConsent(){var a=document.getElementById("agree"),g=document.getElementById("go");a.onchange=function(){g.disabled=!a.checked};g.onclick=function(){S.consent=true;S.tab="home";render()}}
+function viewGate(){return '<div class="card"><h2>🔑 合言葉を入れてください</h2><p>江原予備校の生徒さん用の合言葉です。<br><span class="small">'+esc(GATE.hint||"")+'</span></p><input type="text" id="pw" autocomplete="off" autocapitalize="off" placeholder="合言葉"><p style="margin-top:12px"><button class="btn" id="pwgo">入る</button></p><p id="pwmsg" class="small" style="color:#c8402f"></p></div>'}
+function bindGate(){
+  var go=function(){var v=document.getElementById("pw").value;if(sha256(gateNorm(v))===GATE.hash){S.unlocked=true;render()}else{document.getElementById("pwmsg").textContent="合言葉がちがいます。もう一度入れてください。"}};
+  document.getElementById("pwgo").onclick=go;
+  document.getElementById("pw").onkeydown=function(e){if(e&&e.key==="Enter")go()}}
+function viewPen(){return '<div class="card"><h2>🖋 ペンネームを決めましょう</h2><p>本名は使わず、好きな名前（ペンネーム）をつけてください。印刷した用紙にも、ペンネームが入ります。先生には、ペンネームを教えてください。</p>'+
+  '<div class="warn"><b>本名・住所・電話番号・メールアドレスは、ペンネームに使わないでください。</b></div>'+
+  '<label>ペンネーム <small>（12文字まで）</small></label><input type="text" id="pen" maxlength="12" autocomplete="off" placeholder="例：さくら、ひまわり">'+
+  '<p id="penmsg" class="small" style="color:#c8402f"></p><p><button class="btn" id="pengo">これにする</button></p></div>'}
+function bindPen(){
+  var go=function(){var v=document.getElementById("pen").value.replace(/^\s+|\s+$/g,"");
+    if(!v){document.getElementById("penmsg").textContent="ペンネームを入れてください。";return}
+    if(hasPII(v)){document.getElementById("penmsg").textContent="電話番号や住所のような文字が入っています。ペンネームにしてください。";return}
+    S.pen=v;D.pen=v;S.tab="home";render()};
+  document.getElementById("pengo").onclick=go;
+  document.getElementById("pen").onkeydown=function(e){if(e&&e.key==="Enter")go()}}
+
+/* ---------- ホーム ---------- */
+function viewHome(){
+  var steps=[["research","🏫","① 志望校を調べる","理念・求める学生像・合格率・入試の形式を比べます。"],
+             ["sakubun","✏️","② 作文の基礎","短く、具体的に、4つの段落で書く練習です。"],
+             ["shouron","📝","③ 小論文の基礎","意見と理由を、型にそって書く練習です。"],
+             ["input","📓","④ 素材ノートに書く","B4二つ折りのノートに、経験・つらかったこと・強みを書き出します。スマホで書いて、印刷もできます。"],
+             ["sheet","📄","⑤ 素材シートを作る","入力内容と志望校のキーワードをつなぎ、作文の下書きに進みます。"],
+             ["essay","✍","⑥ 原稿用紙で書く","スマホで文章を打つと、縦書きの原稿用紙に自動で割り付けます。"]];
+  return '<div class="card"><h2>ようこそ</h2><p>看護学校の作文・小論文は、「うまい文章」より「あなたの経験と気持ち」が大切です。順番に進めれば、下書きまでたどりつけます。</p></div>'+
+  '<div class="grid two">'+steps.map(function(s){return '<button class="tile" data-go="'+s[0]+'"><span class="ic">'+s[1]+'</span><b>'+s[2]+'</b>'+s[3]+'</button>'}).join("")+'</div>'+
+  '<p class="small">ペンネーム：<b>'+esc(S.pen)+'</b>　<button class="btn line" id="chpen" style="padding:4px 12px;font-size:13px">変える</button></p>'+'<div class="tip">学校の情報は'+SCHOOLS_UPDATED+'時点の公開資料です。出願前には、必ず各学校の最新の募集要項をご確認ください。</div>'}
+function bindHome(){var cp=document.getElementById("chpen");if(cp)cp.onclick=function(){S.pen="";render()};Array.prototype.forEach.call(app.querySelectorAll("[data-go]"),function(b){b.onclick=function(){go(b.getAttribute("data-go"))}})}
+
+/* ---------- レッスン ---------- */
+function demoHtml(p){
+  if(!p.demo)return "";
+  return '<h3>原稿用紙の見え方（縦書き・上から下へ）</h3><div class="demos">'+p.demo.map(function(d){
+    return '<div class="demo"><div class="col">'+d.cells.map(function(c){return '<span class="mas'+(d.eng?' eng':'')+'">'+esc(c)+'</span>'}).join("")+'</div><div class="cap">'+esc(d.cap)+'</div></div>'}).join("")+'</div>'}
+function viewLesson(){
+  var L=LESSONS[S.lessonKey], i=S.lessonIdx, p=L.pages[i], n=L.pages.length;
+  var doneN=Object.keys(S.done).filter(function(k){return k.indexOf(S.lessonKey)===0}).length;
+  return '<div class="card"><h2>'+esc(L.title)+'　<span class="small">'+(i+1)+' / '+n+'</span></h2><div class="progress"><i style="width:'+Math.round((i+1)/n*100)+'%"></i></div>'+
+  '<h3 style="font-size:18px">'+esc(p.t)+'</h3>'+
+  '<div class="tip"><b>ポイント</b><br>'+nl(p.point)+'</div>'+
+  '<h3>解説</h3><p>'+nl(p.explain)+'</p>'+
+  '<h3>例</h3><pre class="ex">'+esc(p.ex)+'</pre>'+demoHtml(p)+
+  '<h3>練習</h3><p>'+nl(p.ps)+'</p><textarea id="ans" placeholder="ここに書いてみましょう（保存されません）"></textarea>'+
+  '<h3>できたかな？</h3><div class="chk">'+p.ck.map(function(c,k){return '<label><input type="checkbox" class="ck" data-k="'+k+'"> '+esc(c)+'</label>'}).join("")+'</div>'+
+  '<p style="margin-top:16px"><button class="btn line" id="prev" '+(i===0?"disabled":"")+'>← 前へ</button> '+
+  (i<n-1?'<button class="btn" id="next">次へ →</button>':'<button class="btn sun" id="fin">このコースを終える</button>')+'</p></div>'}
+function bindLesson(){
+  var p=document.getElementById("prev"),nx=document.getElementById("next"),f=document.getElementById("fin");
+  if(p)p.onclick=function(){S.lessonIdx--;render();window.scrollTo(0,0)};
+  if(nx)nx.onclick=function(){S.done[S.lessonKey+S.lessonIdx]=1;S.lessonIdx++;render();window.scrollTo(0,0)};
+  if(f)f.onclick=function(){S.done[S.lessonKey+S.lessonIdx]=1;go(S.lessonKey==="sakubun"?"shouron":(S.lessonKey==="shouron"?"genkou":"input"))};
+}
+
+/* ---------- 志望校リサーチ ---------- */
+function badge(s){return '<span class="badge '+(s.kind==="正看"?"b-sei":"b-jun")+'">'+s.kind+'</span>'+(/募集停止|閉校/.test(s.exam+s.message)&&s.kind==="准看"&&!/令和9年度入試が最後/.test(s.message)?'<span class="badge b-stop">募集停止・閉校予定</span>':'')}
+function viewResearch(){
+  var list=SCHOOLS.filter(function(s){return S.kindFilter==="all"||s.kind===S.kindFilter});
+  var h='<div class="card"><h2>志望校リサーチ</h2><p>学校を選ぶと、<b>理念・求める学生像・学校が強調したい点・入試の作文／小論文</b>がまとまります。最大3校まで、志望校に登録できます。</p>'+
+  '<div class="chk" id="kf">'+[["all","すべて"],["正看","正看護師"],["准看","准看護師"]].map(function(k){return '<label><input type="radio" name="kf" value="'+k[0]+'" '+(S.kindFilter===k[0]?"checked":"")+'> '+k[1]+'</label>'}).join("")+'</div></div>';
+  h+='<div class="card"><h3>志望校に登録中：'+(S.sel.length?S.sel.map(function(id){return esc(byId(id).name)}).join("／"):"（まだありません）")+'</h3></div>';
+  h+=list.map(function(s){var on=S.sel.indexOf(s.id)>=0;
+    return '<div class="card"><div>'+badge(s)+'<b style="font-size:17px">'+esc(s.name)+'</b></div>'+
+    '<p class="small">'+esc(s.course)+'｜'+esc(s.area)+'｜修業年限 '+esc(s.years)+'｜定員 '+esc(s.cap)+'</p>'+
+    '<div class="row">'+(s.feat?s.feat.tags:[]).map(function(t){return '<span class="pill tag">'+esc(t)+'</span>'}).join("")+'</div>'+
+    '<div class="ok"><b>学校が強調したい点</b>（公開資料からの読み取り）<ul style="margin:4px 0 0 18px;padding:0">'+s.emphasis.map(function(e){return '<li>'+esc(e)+'</li>'}).join("")+'</ul></div>'+
+    '<div class="row">'+s.keywords.map(function(k){return '<span class="pill">'+esc(k)+'</span>'}).join("")+'</div>'+
+    '<details><summary style="cursor:pointer;font-weight:700;color:var(--blue-d)">学校の特徴・くわしく見る</summary>'+
+    '<dl class="feat"><dt>成り立ち（設置主体）</dt><dd>'+nl(s.feat.origin)+'</dd><dt>歴史</dt><dd>'+nl(s.feat.history)+'</dd><dt>母体・関連病院の性格</dt><dd>'+nl(s.feat.hosp)+'</dd><dt>実習先</dt><dd>'+nl(s.feat.practice)+'</dd></dl>'+
+    '<dl class="kv" style="margin-top:8px">'+
+    '<dt>理念・モットー</dt><dd>'+nl(s.philosophy)+'</dd>'+
+    '<dt>求める学生像<br>校長挨拶</dt><dd>'+nl(s.message)+'</dd>'+
+    '<dt>在籍者数</dt><dd>'+nl(s.enroll)+'</dd>'+
+    '<dt>国家試験<br>合格率</dt><dd>'+nl(s.pass)+'</dd>'+
+    '<dt>入試</dt><dd>'+nl(s.exam)+'</dd>'+
+    '<dt>作文・小論文</dt><dd><b>'+nl(s.essay)+'</b></dd>'+
+    '<dt>出典</dt><dd class="small" style="word-break:break-all">'+esc(s.src)+'</dd></dl></details>'+
+    '<p style="margin-top:10px"><button class="btn '+(on?"sun":"line")+'" data-pick="'+s.id+'">'+(on?"✓ 志望校に登録中（もう一度押すと解除）":"志望校に登録する")+'</button></p></div>'}).join("");
+  h+='<div class="card"><h2>一覧表で比べる</h2><div class="scroll"><table class="cmp"><tr><th>学校</th><th>種別</th><th>定員</th><th>合格率</th><th>作文・小論文</th></tr>'+
+    list.map(function(s){return '<tr><td>'+esc(s.name)+'</td><td>'+s.kind+'</td><td>'+esc(s.cap)+'</td><td>'+esc(s.pass)+'</td><td>'+esc(s.essay)+'</td></tr>'}).join("")+'</table></div>'+
+    '<p class="small">「要確認」の項目は、公開資料で確かめられなかったものです。学校へ直接お問い合わせください。</p></div>';
+  return h}
+function bindResearch(){
+  Array.prototype.forEach.call(app.querySelectorAll("input[name=kf]"),function(r){r.onchange=function(){S.kindFilter=r.value;render()}});
+  Array.prototype.forEach.call(app.querySelectorAll("[data-pick]"),function(b){b.onclick=function(){
+    var id=b.getAttribute("data-pick"),i=S.sel.indexOf(id);
+    if(i>=0)S.sel.splice(i,1); else if(S.sel.length<3)S.sel.push(id); else alert("登録できるのは3校までです。");
+    var y=window.scrollY; render(); window.scrollTo(0,y)}});
+}
+
+/* ---------- 素材入力 ---------- */
+function v(k){return esc(D[k]||"")}
+function sel(k,opts){return '<select data-k="'+k+'"><option value="">選んでください</option>'+opts.map(function(o){return '<option '+(D[k]===o?"selected":"")+'>'+esc(o)+'</option>'}).join("")+'</select>'}
+function cbs(k,opts){var cur=D[k]||[];return '<div class="chk">'+opts.map(function(o){return '<label><input type="checkbox" data-m="'+k+'" value="'+esc(o)+'" '+(cur.indexOf(o)>=0?"checked":"")+'> '+esc(o)+'</label>'}).join("")+'</div>'}
+function fld(label,sub,key,h,hint){return '<div class="fld"><div class="fl">'+label+(sub?' <small>'+sub+'</small>':'')+'</div><textarea data-k="'+key+'" style="min-height:'+h+'px" placeholder="'+esc(hint||"")+'">'+v(key)+'</textarea></div>'}
+function lin(label,sub,key,hint,type){return '<div class="fld"><div class="fl">'+label+(sub?' <small>'+sub+'</small>':'')+'</div><input type="'+(type||"text")+'" data-k="'+key+'" value="'+v(key)+'" placeholder="'+esc(hint||"")+'"></div>'}
+function rad(k,opts){return '<div class="chk sm">'+opts.map(function(o){return '<label><input type="radio" name="r_'+k+'" data-r="'+k+'" value="'+esc(o)+'" '+(D[k]===o?"checked":"")+'> '+esc(o)+'</label>'}).join("")+'</div>'}
+function cbs(k,opts){var cur=D[k]||[];return '<div class="chk sm">'+opts.map(function(o){return '<label><input type="checkbox" data-m="'+k+'" value="'+esc(o)+'" '+(cur.indexOf(o)>=0?"checked":"")+'> '+esc(o)+'</label>'}).join("")+'</div>'}
+function viewInput(){
+  var schools=S.sel.map(function(id){return byId(id).name});
+  var back='<div class="face back"><div class="fbar mint">📘 書き方のヒント</div>'+
+   '<h4>作文の4つの段落</h4><p class="hl b">① きっかけ → ② 経験 → ③ 学び → ④ これから</p><ul><li>1文は40〜60字を目安に。短く、はっきり書く。</li><li>文末は「です・ます」か「だ・である」のどちらかにそろえる。</li><li>「頑張りました」だけでなく、いつ・どこで・何をしたかを1つ書く。</li></ul>'+
+   '<h4>小論文の型</h4><p class="hl y">序論 → 本論 → 結論</p><ul><li>序論：テーマの要約と、自分の立場。</li><li>本論：理由・根拠（「例えば」の具体例、「一方、」の反対意見）。</li><li>結論：意見のまとめと、今後の展望。</li></ul>'+
+   '<div class="fbar sun">🗒 原稿用紙のルール（縦書き）</div><ul class="sm"><li>段落の初めは1マス空ける。</li><li>句読点（、。）は1マスを使い右上。行の最初のマスには書かず、前の行の最後のマスに入れる。</li><li>かぎかっこ：開き「は右下、閉じ」は左上。</li><li>西暦は漢数字で「二〇一八年」。「二千十八年」は×。</li><li>英字・数字は1マスに2文字（Society 5.0 → So／ci／et／y／5.／0）。</li><li>「だ・である」調。ら抜き言葉は×（食べられる）。</li><li>字数制限を守る。短すぎるのもよくない（目安は8割以上）。</li><li>漢字は正しく丁寧に、見やすい字で。</li></ul>'+
+   '<div class="fbar coral">⚠ 個人情報について</div><p class="hl c">この用紙に、住所・氏名・電話番号・メールアドレスは書かないでください。学校名・会社名は、書きたくなければ空欄で大丈夫です。お子さんの名前や年齢の詳しい情報も書かないでください。</p><p class="r">江原予備校</p></div>';
+  var cover='<div class="face cover"><div class="ttl">看護学校　作文・小論文</div><div class="ttl2">私の素材ノート</div><p class="c small">〜 経験を書き出して、作文の材料にしよう 〜</p>'+'<div class="fld"><div class="fl">ペンネーム <small>本名は書かない</small></div><div class="ro">'+esc(S.pen||"")+'</div></div>'+
+   '<div class="fbar coral">⚠ はじめに必ずお読みください</div><p class="hl c"><b>この用紙には、住所・氏名・電話番号・メールアドレスなどの個人情報を、絶対に書かないでください。</b><br>学校名・会社名は任意です。お子さんについては、人数だけ書いてください。</p><p>☑ 個人情報は書かないことに同意しました。</p>'+
+   '<div class="fbar blue">志望校（最大3校）</div>'+
+   [0,1,2].map(function(i){return '<div class="fld"><div class="fl">第'+(i+1)+'志望</div><div class="ro">'+esc(schools[i]||"")+'</div></div>'}).join("")+
+   (schools.length?'':'<p class="small noprint">「志望校リサーチ」で登録すると、ここに自動で入ります。</p>')+
+   '<div class="fld"><div class="fl">入試の形式 <small>（募集要項で確認）</small></div>'+rad("exam",["作文","小論文","どちらもない"])+'</div>'+
+   '<div class="fld"><div class="fl">字数・制限時間</div><div class="two"><input type="number" data-k="chars" value="'+v("chars")+'" placeholder="字数（字）"><input type="number" data-k="mins" value="'+v("mins")+'" placeholder="時間（分）"></div></div></div>';
+  var p2='<div class="face p2"><div class="fbar blue">1　学歴</div>'+
+   '<div class="fld"><div class="fl">卒業した学校の種類 <small>校名は書かなくてOK</small></div>'+rad("school",["高校（全日制）","高校（定時制）","通信制高校","高認のみ","短大・専門学校","大学","その他"])+'</div>'+
+   lin("学科・コース","例：普通科、商業科、看護科","dept")+
+   '<div class="fld"><div class="fl">高認（高校卒業程度認定）</div>'+rad("kounin",["取得している","取得していない","受験予定"])+'</div>'+
+   '<div class="fbar blue">2　部活動・課外活動</div>'+
+   lin("部活動歴","部活名・期間","club")+lin("戦績・入賞歴","","prize","例：県大会ベスト8")+
+   '<div class="fld"><div class="fl">役職</div>'+rad("post",["なし","部長・キャプテン","副部長・副キャプテン","その他","部活動はしていない"])+'</div>'+
+   lin("役職の名前","「その他」の人","postName")+
+   '<div class="fbar blue">3　仕事の経験（社会人の方）</div>'+
+   '<div class="fld"><div class="fl">雇用の形</div>'+rad("job",["正職員","非正規（パート・アルバイト・派遣）","両方","経験なし"])+'</div>'+
+   lin("仕事の経験","業種・期間","jobhist","例：介護施設で3年、スーパーで2年")+lin("会社名","任意・書かなくてOK","company")+
+   fld("どんな仕事を担いましたか","","duty",110)+'</div>';
+  var p3='<div class="face p3"><div class="fbar sun">4　つらかったことと、乗り越え方</div>'+
+   fld("部活動・職場・学校でつらかったこと","","hard",90)+fld("それを、どう乗り越えましたか","","overcome",90)+fld("その経験は、看護師としてどう役立ちますか","","useful",80)+
+   '<div class="fbar sun">5　家庭の状況</div>'+
+   '<div class="fld"><div class="fl">お子さん <small>名前・年齢は書かない</small></div>'+rad("kids",["いない","いる"])+'<div class="two" style="margin-top:4px"><input type="number" min="0" max="10" data-k="kidsN" value="'+v("kidsN")+'" placeholder="人数（人）"></div></div>'+
+   '<div class="fld"><div class="fl">ひとり親</div>'+rad("single",["該当しない","シングルマザー","シングルファザー"])+'</div>'+
+   '<div class="fbar sun">6　入学後の不安</div>'+cbs("worry",["授業についていけるか","子育てとの両立","学費","アルバイトをするか","仕事との両立","健康・体力","人間関係","その他"])+
+   fld("くわしく／どう備えるか","","worryText",70)+
+   '<div class="fbar sun">7　自己PRと頑張ったこと</div>'+
+   fld("自己PR","箇条書きで。1行に1つ","pr",100,"・\n・\n・")+fld("いちばん頑張ったこと","いつ・どこで・何を","effort",90)+fld("高校・大学での研究、探究、卒業論文","なければ空欄で","research",70)+'</div>';
+  return '<div class="warn noprint"><b>住所・氏名・電話番号・メールアドレスは書かないでください。</b><div class="small">学校名・会社名は任意です。書きたくなければ空欄で大丈夫です。</div></div>'+
+  '<div id="piiwarn" class="hide"></div>'+
+  '<div class="card noprint"><h2>📓 私の素材ノート（B4・二つ折り）</h2><p>スマホで書き込めます。印刷すると、B4用紙の表裏が二つ折りのノートになります。<br><span class="small">書いた内容はこの画面の中だけにあります。ブラウザを閉じると消えるので、印刷（PDF保存）かテキスト保存をしてください。</span></p>'+
+  '<p><button class="btn" id="pr">🖨 PDFで保存・印刷（B4）</button> <button class="btn line" id="mk">素材シートを作る →</button></p>'+
+  '<p class="small">PDFにするとき：印刷画面で「送信先：PDFに保存」を選び、用紙サイズを「B4」、向きを「横」、倍率を「デフォルト」にしてください。スマホで用紙サイズを選べない場合は、下の白紙のPDFを印刷して手書きしてください。</p>'+
+  '<p><a class="btn sun" href="note_blank_B4.pdf" target="_blank" rel="noopener">📄 手書き用の白紙（B4・PDF）を開く</a></p></div>'+
+  '<div class="notebook"><div class="sheet">'+back+cover+'</div><div class="sheet">'+p2+p3+'</div></div>'}
+function checkPII(){
+  var all=Object.keys(D).map(function(k){return Array.isArray(D[k])?D[k].join(" "):D[k]}).join("\n");
+  var el=document.getElementById("piiwarn"); if(!el)return false;
+  var bad=hasPII(all);
+  el.className=bad?"card warn":"hide";
+  el.innerHTML=bad?'<b>電話番号・住所・メールアドレスのような文字が見つかりました。</b> 個人情報は消してください。':"";
+  return bad}
+function grow(t){t.style.height="auto";t.style.height=Math.max(t.scrollHeight+4,parseInt(t.style.minHeight)||0)+"px"}
+function bindInput(){
+  Array.prototype.forEach.call(app.querySelectorAll("[data-k]"),function(e){var h=function(){D[e.getAttribute("data-k")]=e.value;if(e.tagName==="TEXTAREA")grow(e);checkPII()};e.oninput=h;e.onchange=h;if(e.tagName==="TEXTAREA")grow(e)});
+  Array.prototype.forEach.call(app.querySelectorAll("[data-m]"),function(e){e.onchange=function(){
+    var k=e.getAttribute("data-m"),cur=D[k]||[],i=cur.indexOf(e.value);
+    if(e.checked&&i<0)cur.push(e.value); if(!e.checked&&i>=0)cur.splice(i,1); D[k]=cur}});
+  Array.prototype.forEach.call(app.querySelectorAll("[data-r]"),function(e){e.onchange=function(){if(e.checked)D[e.getAttribute("data-r")]=e.value}});
+  window.onbeforeprint=function(){Array.prototype.forEach.call(app.querySelectorAll("textarea"),grow)};
+  document.getElementById("pr").onclick=function(){if(checkPII()){alert("個人情報が含まれているようです。消してから印刷してください。");return}window.print()};
+  document.getElementById("mk").onclick=function(){ if(checkPII()){alert("個人情報が含まれているようです。消してからもう一度押してください。");return} go("sheet")};
+  checkPII();
+}
+
+/* ---------- 原稿用紙で書く ---------- */
+var NOHEAD="、。，．」』）】！？";
+function layoutGenkou(text){
+  var cols=[], col=[];
+  function newCol(){if(col.length)cols.push(col);col=[]}
+  var brk=false;
+  function put(ch){
+    var isAscii=/^[A-Za-z0-9.]$/.test(ch);
+    if(isAscii&&col.length&&!brk){var last=col[col.length-1];if(last.eng&&last.t.length<2&&!last.over){last.t+=ch;return}}
+    brk=false;
+    if(col.length>=20){
+      if(NOHEAD.indexOf(ch)>=0){var l=col[col.length-1];l.t+=ch;l.over=true;return}
+      newCol();
+    }
+    col.push({t:ch,eng:isAscii,over:false});
+  }
+  var paras=text.split("\n");
+  paras.forEach(function(p,pi){
+    if(p.replace(/\s/g,"")===""){ if(pi<paras.length-1&&col.length){newCol()} return}
+    if(col.length)newCol();
+    col.push({t:"",eng:false,over:false}); // 段落の初めは1マス空ける
+    for(var i=0;i<p.length;i++){var ch=p[i];if(ch===" "||ch==="　"){brk=true;continue}put(ch)}
+  });
+  if(col.length)cols.push(col);
+  return cols}
+function genkouWarn(t){
+  var w=[];
+  if(/(食べ|見|来|出|寝|起き|着|考え|答え|比べ)れ(る|ない|ます|た|て)/.test(t))w.push("「ら抜き言葉」かもしれません（食べられる、見られる、など）。");
+  if(/[0-9０-９]{2,}\s*(年|月|日|人|歳|％|%)/.test(t))w.push("縦書きでは、数字は漢数字で書くのが基本です（例：二〇一八年）。学校の指示も確認しましょう。");
+  if(/二千[^\s]{0,4}年/.test(t))w.push("西暦は「二千十八年」ではなく「二〇一八年」と書きます。");
+  if(/(です|ます)(。|$)/m.test(t)&&/(だ|である)。/.test(t))w.push("「です・ます」と「だ・である」が混ざっています。どちらかにそろえましょう（小論文は「だ・である」）。");
+  if(/\n\s*\n/.test(t)===false&&t.length>400)w.push("段落が1つだけです。4つ前後に分けると読みやすくなります。");
+  return w}
+function essayView(t){
+  var chars=t.replace(/[\s\n]/g,"").length, tgt=parseInt(D.chars)||0, cols=layoutGenkou(t);
+  var info='<b>字数：'+chars+'字</b>'+(tgt?'（制限 '+tgt+'字：'+(chars>tgt?'<span style="color:#c8402f">字数オーバーです</span>':(chars<tgt*0.8?'<span style="color:#c8402f">あと'+(Math.ceil(tgt*0.8)-chars)+'字で8割です</span>':'<span style="color:#1d8b69">範囲内です</span>'))+'）':'（素材ノートで字数を入れると、ここで判定します）');
+  var warn=genkouWarn(t);
+  info+=warn.length?'<ul>'+warn.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>':'';
+  var sheets=[];for(var i=0;i<cols.length;i+=10)sheets.push(cols.slice(i,i+10));
+  if(!sheets.length)sheets.push([]);
+  var prev=sheets.map(function(sh,si){
+    var cs=sh.slice();while(cs.length<10)cs.push([]);
+    return '<div class="gk-wrap"><div class="gk-cap small">'+(si+1)+'枚目（右の行から左へ）</div><div class="gk">'+cs.map(function(c){
+      var cells=c.slice();while(cells.length<20)cells.push({t:"",eng:false,over:false});
+      return '<div class="gk-col">'+cells.map(function(x){return '<span class="gk-c'+(x.eng?' eng':'')+(x.over?' over':'')+'">'+esc(x.t)+'</span>'}).join("")+'</div>'}).join("")+'</div><div class="gk-no small">20×10</div></div>'}).join("");
+  return {info:info,prev:'<div class="gk-who"><b>ペンネーム：'+esc(S.pen||"")+'</b></div>'+prev}}
+function viewEssay(){
+  var r=essayView(D.essay||"");
+  return '<div class="warn noprint"><b>氏名・住所・電話番号は書かないでください。</b></div><div id="piiwarn" class="hide"></div>'+
+  '<div class="card noprint"><h2>✍ 原稿用紙で書く</h2><p>下の枠に、ふつうに文章を打ってください。縦書きの原稿用紙（20×10）に、自動で割り付けます。段落を変えるときは、改行します（段落の初めは自動で1マス空きます）。</p>'+
+  '<textarea id="es" style="min-height:220px" placeholder="ここに作文・小論文を書きます">'+esc(D.essay||"")+'</textarea>'+
+  '<div id="esinfo" class="tip" style="margin-top:8px">'+r.info+'</div>'+
+  '<p><button class="btn" id="espr">🖨 PDFで保存・印刷（A4）</button> <button class="btn line" id="estxt">テキスト保存</button></p>'+
+  '<p class="small">行の最初に来る句読点（、。）は、前の行の最後のマスに入れています（赤い枠）。英字・数字は1マスに2文字です。最終的な提出用は、手書きの原稿用紙に書き写してください。</p></div>'+
+  '<div id="espreview" class="gk-all">'+r.prev+'</div>'+linePanel()}
+function bindEssay(){
+  var t=document.getElementById("es"),info=document.getElementById("esinfo"),pv=document.getElementById("espreview");
+  t.oninput=function(){D.essay=t.value;var r=essayView(t.value);info.innerHTML=r.info;pv.innerHTML=r.prev;
+    var bad=hasPII(t.value),el=document.getElementById("piiwarn");el.className=bad?"card warn":"hide";el.innerHTML=bad?'<b>電話番号・住所・メールアドレスのような文字が見つかりました。消してください。</b>':""};
+  document.getElementById("espr").onclick=function(){window.print()};
+  bindLine();
+  document.getElementById("estxt").onclick=function(){var b=new Blob(["ペンネーム："+(S.pen||"")+"\n\n"+(D.essay||"")],{type:"text/plain;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="essay.txt";document.body.appendChild(a);a.click();document.body.removeChild(a)};
+}
+
+/* ---------- LINEで先生に送る（文面） ---------- */
+function lineText(){
+  var t=[],A=function(x){t.push(x)};
+  var chars=(D.essay||"").replace(/[\s\n]/g,"").length, warn=genkouWarn(D.essay||"");
+  A("【作文・小論文 添削依頼】");
+  A("ペンネーム："+(S.pen||""));
+  A("志望校："+(S.sel.length?S.sel.map(function(id){return byId(id).name}).join("、"):"（未登録）"));
+  A("入試の形式："+(D.exam||"")+"　字数："+(D.chars||"")+"字　制限時間："+(D.mins||"")+"分");
+  A("\n＜これまでの質問への回答（素材ノート）＞");
+  A(sheetText());
+  A("\n＜作文・小論文＞（"+chars+"字）");
+  A(D.essay||"（まだ書いていません）");
+  A("\n＜自動チェックの結果＞");
+  A(warn.length?warn.map(function(x){return "・"+x}).join("\n"):"・気になる点は見つかりませんでした。");
+  if(D.ask)A("\n＜先生に聞きたいこと＞\n"+D.ask);
+  A("\n＜お願い＞\n採点・アドバイス・模範例をお願いします。");
+  A("※返信は最大3営業日以内です。できるだけ早く返信します。");
+  return t.join("\n")}
+function linePanel(){
+  var ln=(typeof LINE_CFG!=="undefined"&&LINE_CFG.oaId)?"（先生のLINEがすぐ開きます）":"（LINEが開いたら、先生を選んで送ってください）";
+  return '<div class="card noprint" id="linebox"><h2>📨 先生にLINEで送る</h2>'+
+  '<p>書いた作文と、これまでの質問への回答（素材ノート）を、<b>文面（テキスト）</b>でLINEに送ります。先生が採点・アドバイス・模範例を返信します。</p>'+
+  '<div class="ok"><b>返信は最大3営業日以内です。</b>できるだけ早く返信します。</div>'+
+  '<label>先生に聞きたいこと <small>（なければ空欄で）</small></label><textarea id="lnask" style="min-height:70px">'+esc(D.ask||"")+'</textarea>'+
+  '<div class="warn" style="margin-top:8px"><b>送る前に：</b>本名・住所・電話番号・メールアドレスが入っていないか、確認してください。</div>'+
+  '<p style="margin-top:10px"><button class="btn" id="lnsend">LINEで送る</button> <button class="btn line" id="lncopy">文面をコピーする</button></p>'+
+  '<p class="small">'+ln+' うまく開かないときは、「文面をコピーする」を押してから、LINEで先生とのトークに貼りつけてください。PDFより文面のほうが軽いので、文面で送ります。</p></div>'}
+function lineGuard(){var t=lineText();if(hasPII(t)){alert("電話番号・住所・メールアドレスのような文字が入っています。消してから送ってください。");return null}return t}
+function copyText(t,done){
+  var ok=false;
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){done(true)},function(){done(fallbackCopy(t))});return}}catch(e){}
+  done(fallbackCopy(t))}
+function fallbackCopy(t){try{var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var r=document.execCommand&&document.execCommand("copy");document.body.removeChild(a);return !!r}catch(e){return false}}
+function bindLine(){
+  var ask=document.getElementById("lnask");if(ask)ask.oninput=function(){D.ask=ask.value};
+  var cp=document.getElementById("lncopy"),sd=document.getElementById("lnsend");
+  if(cp)cp.onclick=function(){var t=lineGuard();if(!t)return;copyText(t,function(ok){alert(ok?"文面をコピーしました。LINEで先生とのトークに貼りつけてください。":"コピーできませんでした。お手数ですが、素材シート画面の「テキスト保存」を使ってください。")})};
+  if(sd)sd.onclick=function(){var t=lineGuard();if(!t)return;
+    var enc=encodeURIComponent(t),oa=(typeof LINE_CFG!=="undefined"&&LINE_CFG.oaId)?LINE_CFG.oaId:"";
+    if(enc.length>6000){copyText(t,function(ok){alert((ok?"文章が長いため、文面をコピーしました。":"文章が長いため、自動では送れません。")+"LINEを開きます。先生とのトークに貼りつけて送ってください。");window.open(oa?("https://line.me/R/ti/p/"+oa):"https://line.me/R/","_blank")});return}
+    var url=oa?("https://line.me/R/oaMessage/"+oa+"/?"+enc):("https://line.me/R/share?text="+enc);
+    window.open(url,"_blank")};
+}
+
+/* ---------- 素材シート ---------- */
+function bullets(t){return (t||"").split(/\n+/).map(function(x){return x.replace(/^[・\-\*•\s]+/,"").trim()}).filter(Boolean)}
+function sheetText(){
+  var t=[],A=function(a){t.push(a)};
+  A("【素材シート】看護学校 作文・小論文");
+  A("ペンネーム："+(S.pen||""));
+  A("志望校："+(S.sel.length?S.sel.map(function(id){return byId(id).name}).join("、"):"（未登録）"));
+  A("\n■ 学歴\n種類："+(D.school||"")+"　学科："+(D.dept||"")+"　高認："+(D.kounin||""));
+  A("\n■ 部活動\n部活動："+(D.club||"")+"\n戦績："+(D.prize||"")+"\n役職："+(D.post||"")+(D.postName?"（"+D.postName+"）":""));
+  A("\n■ 仕事\n雇用の形："+(D.job||"")+"\n経験："+(D.jobhist||"")+(D.company?"（"+D.company+"）":"")+"\n担った仕事："+(D.duty||""));
+  A("\n■ つらかったこと\n"+(D.hard||"")+"\n\n■ 乗り越え方\n"+(D.overcome||"")+"\n\n■ 看護師として役立つこと\n"+(D.useful||""));
+  A("\n■ 家庭\nお子さん："+(D.kids||"")+(D.kidsN?"（"+D.kidsN+"人）":"")+"　ひとり親："+(D.single||""));
+  A("\n■ 入学後の不安\n"+((D.worry||[]).join("、"))+"\n"+(D.worryText||""));
+  A("\n■ 自己PR\n"+bullets(D.pr).map(function(x){return "・"+x}).join("\n")+"\n\n■ 頑張ったこと\n"+(D.effort||"")+"\n\n■ 研究・探究\n"+(D.research||""));
+  return t.join("\n")}
+function themes(){
+  var base=["あなたが看護師を目指す理由を述べなさい。","これまでに頑張ったことと、そこから学んだことを述べなさい。","理想の看護師像について、あなたの考えを述べなさい。","入学後、どのように学び、どんな看護師になりたいかを述べなさい。"];
+  var ron=["高齢化社会で看護師に求められる役割について述べなさい。","チーム医療で大切なことは何か、あなたの考えを述べなさい。","患者さんとのコミュニケーションで大切なことを述べなさい。","医療現場でのICT活用について、あなたの考えを述べなさい。"];
+  return {sakubun:base,shouron:ron}}
+function viewSheet(){
+  var schools=S.sel.map(byId);
+  var kw=[];schools.forEach(function(s){s.keywords.forEach(function(k){if(kw.indexOf(k)<0&&k.indexOf("要確認")<0)kw.push(k)})});
+  var em=[];schools.forEach(function(s){s.emphasis.forEach(function(e){em.push(s.name+"：" +e)})});
+  var pr=bullets(D.pr), th=themes();
+  var h='<div class="card sheet" id="sheetbox"><h2>素材シート</h2><p><b>ペンネーム：'+esc(S.pen||"")+'</b></p>'+
+  '<h3>志望校</h3><p>'+(schools.length?schools.map(function(s){return esc(s.name)+'（'+esc(s.essay)+'）'}).join("<br>"):'まだ登録していません。「志望校リサーチ」で登録しましょう。')+'</p>'+
+  '<h3>学歴・活動</h3><p>'+esc(D.school||"―")+'／'+esc(D.dept||"―")+'／高認：'+esc(D.kounin||"―")+'<br>部活動：'+esc(D.club||"―")+'　戦績：'+esc(D.prize||"―")+'　役職：'+esc(D.post||"―")+(D.postName?'（'+esc(D.postName)+'）':'')+'</p>'+
+  '<h3>仕事</h3><p>'+esc(D.job||"―")+'／'+esc(D.jobhist||"―")+(D.company?'（'+esc(D.company)+'）':'')+'<br>担った仕事：'+nl(D.duty||"―")+'</p>'+
+  '<h3>つらかったこと → 乗り越え方 → 看護師として</h3><p><b>つらかったこと：</b>'+nl(D.hard||"―")+'</p><p><b>乗り越え方：</b>'+nl(D.overcome||"―")+'</p><p><b>看護師に役立つこと：</b>'+nl(D.useful||"―")+'</p>'+
+  '<h3>家庭・不安</h3><p>お子さん：'+esc(D.kids||"―")+(D.kidsN?'（'+esc(D.kidsN)+'人）':'')+'／ひとり親：'+esc(D.single||"―")+'<br>不安：'+esc((D.worry||[]).join("、")||"―")+'<br>'+nl(D.worryText||"")+'</p>'+
+  '<h3>自己PR</h3>'+(pr.length?'<ul>'+pr.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>':'<p>―</p>')+
+  '<p><b>頑張ったこと：</b>'+nl(D.effort||"―")+'</p><p><b>研究・探究：</b>'+nl(D.research||"―")+'</p></div>'+
+
+  '<div class="card"><h2>作文の下書きガイド</h2><p class="small">あなたの入力と、志望校の特徴をつなげた「構成メモ」です。この順に、自分の言葉で書いてみましょう。</p>'+
+  '<div class="tip"><b>志望校がよく使う言葉</b><div class="row">'+(kw.length?kw.map(function(k){return '<span class="pill">'+esc(k)+'</span>'}).join(""):'（志望校を登録すると表示されます）')+'</div>'+
+  (em.length?'<div class="small" style="margin-top:6px">学校が強調したい点：<br>'+em.map(esc).join("<br>")+'</div>':'')+
+  (schools.length?'<div class="small" style="margin-top:6px">学校の特徴（志望理由に使えます）：<br>'+schools.map(function(s){return esc(s.name)+'：'+esc(s.feat.tags.join("／"))}).join("<br>")+'</div>':'')+'</div>'+
+  '<h3>① きっかけ</h3><p class="small">看護師を目指したきっかけを1〜2文で。</p>'+
+  '<h3>② 経験</h3><pre class="ex">頑張ったこと：'+esc(D.effort||"（素材を入力しましょう）")+'\nつらかったこと：'+esc(D.hard||"―")+'\n乗り越え方：'+esc(D.overcome||"―")+'</pre>'+
+  '<h3>③ 学び</h3><pre class="ex">経験から身についた力：'+esc(pr.slice(0,3).join("、")||"―")+'\n看護師として役立つこと：'+esc(D.useful||"―")+'</pre>'+
+  '<h3>④ これから</h3><pre class="ex">入学後の不安への備え：'+esc((D.worry||[]).join("、")||"―")+'\n志望校の言葉を使って、抱負を書きましょう：'+esc(kw.slice(0,3).join("、")||"―")+'</pre>'+
+  '<h3>練習用のテーマ</h3><p><b>作文</b></p><ul>'+th.sakubun.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul><p><b>小論文</b></p><ul>'+th.shouron.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>'+
+  '<div class="tip">この下書きを先生に見せると、添削を受けられます。（次の段階で、自動の評価・アドバイス・模範例の機能を追加する予定です）</div></div>'+
+  '<p class="noprint"><button class="btn" id="print">🖨 印刷する</button> <button class="btn line" id="txt">テキスト保存</button> <button class="btn line" id="copy">コピー</button></p>'+linePanel();
+  return h}
+function bindSheet(){
+  bindLine();
+  document.getElementById("print").onclick=function(){window.print()};
+  document.getElementById("copy").onclick=function(){var t=sheetText();if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){alert("コピーしました")},function(){alert("コピーできませんでした")});else alert("お使いの環境ではコピーできません。テキスト保存を使ってください。")};
+  document.getElementById("txt").onclick=function(){var b=new Blob([sheetText()],{type:"text/plain;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="sozai-sheet.txt";document.body.appendChild(a);a.click();document.body.removeChild(a)};
+}
+
+render();
+})();
+</script>
+</body>
+</html>
