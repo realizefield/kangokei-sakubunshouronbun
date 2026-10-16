@@ -69,6 +69,11 @@ table.cmp th{background:var(--blue-l);color:var(--blue-d);position:sticky;top:0}
 .scroll{overflow-x:auto;border-radius:10px}
 .kv{display:grid;grid-template-columns:8.5em 1fr;gap:4px 10px;font-size:15px}
 .kv dt{font-weight:700;color:var(--sub)} .kv dd{margin:0}
+.qch{display:grid;gap:10px;margin:10px 0}
+.qbtn{text-align:left;font-size:17px;padding:14px;border-radius:14px;border:2px solid var(--blue);background:#fff;color:inherit;cursor:pointer}
+.qbtn b{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--blue);color:#fff;margin-right:6px}
+.qbtn.qok{background:#d9f7e6;border-color:#2fb36b}.qbtn.qng{background:var(--coral-l);border-color:var(--coral)}
+.qbtn:disabled{cursor:default}
 .progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0}
 .progress i{display:block;height:100%;background:var(--mint)}
 pre.ex{white-space:pre-wrap;font-family:inherit;background:var(--blue-l);border-radius:10px;padding:10px;margin:6px 0}
@@ -144,6 +149,7 @@ pre.ex{white-space:pre-wrap;font-family:inherit;background:var(--blue-l);border-
 <script src="features.js"></script>
 <script src="lessons.js"></script>
 <script src="write.js"></script>
+<script src="quiz.js"></script>
 <script>
 var app=document.getElementById("app"), nav=document.getElementById("nav");
 var S={decided:false,unlocked:false,pen:"",consent:false, tab:"home", kindFilter:"all", sel:[], lessonKey:null, lessonIdx:0, done:{}};
@@ -158,7 +164,7 @@ function stopped(s){return /募集停止|閉校/.test(s.exam+s.message)&&s.kind=
 var PII=[/0\d{1,4}[-ー−\s]?\d{1,4}[-ー−\s]?\d{3,4}/, /\d{3}[-ー−]\d{4}/, /[\w.+-]+@[\w-]+\.[\w.]+/, /〒/, /(県|市|町|村)[^\s]{0,8}(\d+丁目|\d+番地|\d+-\d+)/];
 function hasPII(t){for(var i=0;i<PII.length;i++)if(PII[i].test(t||""))return true;return false}
 
-var TABS=[["home","🏠 ホーム"],["sakubun","✏️ 作文の基礎"],["shouron","📝 小論文の基礎"],["genkou","🗒 原稿用紙のルール"],["research","🏫 志望校リサーチ"],["input","📓 素材ノート"],["sheet","📄 素材シート"],["write","🪜 段落で書く"],["essay","✍ 原稿用紙で書く"]];
+var TABS=[["home","🏠 ホーム"],["sakubun","✏️ 作文の基礎"],["shouron","📝 小論文の基礎"],["genkou","🗒 原稿用紙のルール"],["quiz","🎯 ミニテスト"],["research","🏫 志望校リサーチ"],["input","📓 素材ノート"],["sheet","📄 素材シート"],["write","🪜 段落で書く"],["essay","✍ 原稿用紙で書く"]];
 function drawNav(){
   nav.className=(S.unlocked&&S.consent&&S.pen)?"":"hide";
   nav.innerHTML=TABS.map(function(t){return '<button data-t="'+t[0]+'" class="'+(S.tab===t[0]?"on":"")+'">'+t[1]+'</button>'}).join("");
@@ -172,9 +178,9 @@ function render(){
   if(!S.unlocked){app.innerHTML=viewGate();bindGate();return}
   if(!S.consent){app.innerHTML=viewConsent();bindConsent();return}
   if(!S.pen){app.innerHTML=viewPen();bindPen();return}
-  var v={home:viewHome,sakubun:viewLesson,shouron:viewLesson,genkou:viewLesson,research:viewResearch,input:viewInput,sheet:viewSheet,write:viewWrite,essay:viewEssay}[S.tab];
+  var v={home:viewHome,sakubun:viewLesson,shouron:viewLesson,genkou:viewLesson,quiz:viewQuiz,research:viewResearch,input:viewInput,sheet:viewSheet,write:viewWrite,essay:viewEssay}[S.tab];
   app.innerHTML=v()+qaHtml();
-  var b={home:bindHome,sakubun:bindLesson,shouron:bindLesson,genkou:bindLesson,research:bindResearch,input:bindInput,sheet:bindSheet,write:bindWrite,essay:bindEssay}[S.tab];
+  var b={home:bindHome,sakubun:bindLesson,shouron:bindLesson,genkou:bindLesson,quiz:bindQuiz,research:bindResearch,input:bindInput,sheet:bindSheet,write:bindWrite,essay:bindEssay}[S.tab];
   if(b)b();
   bindQA();
 }
@@ -208,6 +214,7 @@ function viewHome(){
   var steps=[["research","🏫","① 志望校を調べる","理念・求める学生像・合格率・入試の形式を比べます。"],
              ["sakubun","✏️","② 作文の基礎","短く、具体的に、4つの段落で書く練習です。"],
              ["shouron","📝","③ 小論文の基礎","意見と理由を、型にそって書く練習です。"],
+             ["quiz","🎯","③-2 ミニテスト","基礎を4択で確認。正解すると花吹雪が出ます。ミニテスト2は「この場合どうする？」です。"],
              ["input","📓","④ 素材ノートに書く","B4二つ折りのノートに、経験・つらかったこと・強みを書き出します。スマホで書いて、印刷もできます。"],
              ["sheet","📄","⑤ 素材シートを作る","入力内容と志望校のキーワードをつなぎ、作文の下書きに進みます。"],
              ["write","🪜","⑥ 段落で書く","どう書くか（段落構成）を決めて、1段落ずつ書きます。アドバイスのボタンつきです。"],

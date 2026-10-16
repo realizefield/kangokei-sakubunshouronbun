@@ -212,7 +212,7 @@ function logSend(){
 /* ---------- すべてのページの「AIに質問／野田先生に質問」 ---------- */
 function pageLabel(){
   if(S.tab==="sakubun"||S.tab==="shouron"||S.tab==="genkou"){var L=LESSONS[S.lessonKey];return L.title+"（"+(S.lessonIdx+1)+"ページ目）"+L.pages[S.lessonIdx].t}
-  var m={home:"ホーム",research:"志望校リサーチ",input:"素材ノート",sheet:"素材シート",essay:"原稿用紙で書く",write:"段落で書く"};return m[S.tab]||S.tab}
+  var m={home:"ホーム",research:"志望校リサーチ",input:"素材ノート",sheet:"素材シート",essay:"原稿用紙で書く",write:"段落で書く",quiz:"ミニテスト"};return m[S.tab]||S.tab}
 function qaHtml(){
   var m=S.qaMode||"",h='<div class="card noprint" id="qabox"><h3>❓ わからないことは、聞いてください</h3>'+
   '<p><button class="btn '+(m==="ai"?"":"line")+'" id="qaai">🤖 AIに質問</button> <button class="btn '+(m==="sensei"?"":"line")+'" id="qasen">👨‍🏫 野田先生に質問</button></p>';
