@@ -19,5 +19,5 @@ var LINE_CFG = { oaId: "@735itfta" };
 // スプレッドシートへの記録が動きます。空のあいだは「かんたんチェック（AIなし）」だけが動きます。
 var AI_CFG = {
   endpoint: "https://script.google.com/macros/s/AKfycbwEdhwe0zFOshBvz_S9skAbhdpVqIfIZijwL9VmW01XW2Cz50GTu6kh_9ViD02-8EMs_Q/exec",
-  ai: false   // AIの鍵（APIキー）を入れたら true に変えます。false の間は「かんたんチェック」が動き、シートへの保存だけ働きます。
+  ai: true    // AIの鍵（APIキー）を入れたあとは true。止めたいときは false に変えます（その間は「かんたんチェック」が動きます）。
 };
