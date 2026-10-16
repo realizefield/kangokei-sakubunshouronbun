@@ -23,11 +23,11 @@ function aiCall(payload,cb){
 function schoolInfo(){
   return S.sel.map(function(id){var s=byId(id);return {name:s.name,keywords:(s.keywords||[]).filter(function(k){return k.indexOf("要確認")<0}),emphasis:s.emphasis||[],essay:s.essay||""}})}
 function baseCtx(){
-  return {round:hNextNo(),schools:schoolInfo(),exam:D.exam||"",chars:D.chars||"",mins:D.mins||"",sheet:sheetText()}}
+  return {round:hNextNo(),schools:schoolInfo(),exam:D.exam||"",chars:D.chars||"",mins:D.mins||"",theme:(D.W&&D.W.theme)||"",sheet:(D.W&&D.W.theme?"【題材】"+D.W.theme+"\n":"")+sheetText()}}
 
 /* ---------- 段落構成のモデル ---------- */
 function W(){
-  if(!D.W)D.W={n:4,plan:["","","",""],paras:["","","",""],idx:0,stage:"plan",ev:{}};
+  if(!D.W)D.W={theme:"",n:4,plan:["","","",""],paras:["","","",""],idx:0,stage:"plan",ev:{}};
   return D.W}
 function setN(n){var w=W();w.n=n;while(w.plan.length<n){w.plan.push("");w.paras.push("")}w.plan.length=n;w.paras.length=n;if(w.idx>=n)w.idx=n-1}
 function roles(n){
@@ -103,8 +103,19 @@ function viewWrite(){
   h+='<div class="progress"><i style="width:'+Math.round(prog/3*100)+'%"></i></div><p class="small">①構成を決める　→　②段落を書く　→　③全文を確認して送る　（いま：'+prog+'）</p>';
   if(w.stage==="plan")h+=planView(w);else if(w.stage==="write")h+=paraView(w);else h+=finalView(w);
   return h}
+var THEMES={"作文":["看護師を志望する理由","最近、うれしかったこと","人の役に立った経験","私の長所と短所","つらかったことと、それを乗り越えた経験","高校（または仕事）で頑張ったこと"],
+ "小論文":["看護師に大切だと思うこと","高齢化が進む社会で看護師にできること","チーム医療で大切なこと","患者さんに寄りそうとはどういうことか","医療現場でのコミュニケーションの大切さ"]};
+function themeCard(w){
+  var kind=(D.exam==="小論文")?"小論文":"作文",list=THEMES[kind];
+  var h='<div class="card"><h3>📌 題材（テーマ）を決めましょう</h3>'+
+  '<p class="small">学校から題が出ているときは、そのまま書き写します。まだ決まっていないときは、練習用の題から選べます（自分で書いてもかまいません）。</p>'+
+  '<input type="text" id="theme" style="width:100%;font-size:17px;padding:10px;border:2px solid var(--blue);border-radius:10px;box-sizing:border-box" placeholder="例：看護師を志望する理由" value="'+esc(w.theme||"")+'">'+
+  '<p class="small" style="margin-top:8px">練習用の題（'+kind+'）：</p><div style="display:flex;flex-wrap:wrap;gap:8px">'+
+  list.map(function(t,i){return '<button class="btn line thm" data-i="'+i+'" style="padding:6px 12px;font-size:14px">'+esc(t)+'</button>'}).join("")+'</div>';
+  if(!D.exam)h+='<p class="small">※入試の形式は「志望校」の画面で選べます。いまは作文の題を出しています。</p>';
+  return h+'</div>'}
 function planView(w){
-  var r=roles(w.n),h='<div class="card"><h3>① どう書きたいかを決めましょう（段落構成）</h3>'+
+  var r=roles(w.n),h=themeCard(w)+'<div class="card"><h3>① どう書きたいかを決めましょう（段落構成）</h3>'+
   '<p>段落の数：'+[3,4,5].map(function(n){return '<label style="margin-right:12px"><input type="radio" name="pn" value="'+n+'" '+(w.n===n?"checked":"")+'> '+n+'つ</label>'}).join("")+'</p>'+
   '<p class="small">各段落で「何を書くか」を、短い言葉でメモします。文章でなくて大丈夫です。</p>';
   r.forEach(function(x,i){
@@ -117,7 +128,7 @@ function planView(w){
   return h}
 function paraView(w){
   var r=roles(w.n),i=w.idx,x=r[i],h='';
-  h+='<div class="card"><h3>② '+(i+1)+'段落目を書きましょう（全'+w.n+'段落）：'+esc(x.name)+'</h3>'+
+  h+='<div class="card"><h3>② '+(i+1)+'段落目を書きましょう（全'+w.n+'段落）：'+esc(x.name)+'</h3>'+(w.theme?'<p class="small">題材：<b>'+esc(w.theme)+'</b></p>':'')+
   '<div class="tip"><b>あなたの構想</b><br>'+(w.plan[i]?nl(w.plan[i]):'<span class="small">（構想が空です）</span>')+'</div>';
   if(i>0)h+='<details><summary class="small">ここまで書いた段落を見る</summary><div class="ex" style="white-space:pre-wrap">'+esc(w.paras.slice(0,i).join("\n\n"))+'</div></details>';
   h+='<p class="small">書き出しの例：'+esc(x.start)+'（〜の部分を自分の言葉にします）</p>'+
@@ -130,7 +141,7 @@ function paraView(w){
   if(i<w.n-1)h+='<div class="card"><b>次の段落の構想（'+(i+2)+'段落目：'+esc(r[i+1].name)+'）</b><br>'+(w.plan[i+1]?nl(w.plan[i+1]):'<span class="small">（まだ決めていません）</span>')+'</div>';
   return h}
 function finalView(w){
-  var t=allText(),h='<div class="card"><h3>③ 全文を確認しましょう</h3><div class="ex" style="white-space:pre-wrap">'+esc(w.paras.map(function(p){return (p||"").trim()}).join("\n\n"))+'</div>'+
+  var t=allText(),h='<div class="card"><h3>③ 全文を確認しましょう</h3>'+(w.theme?'<p>題材：<b>'+esc(w.theme)+'</b></p>':'')+'<div class="ex" style="white-space:pre-wrap">'+esc(w.paras.map(function(p){return (p||"").trim()}).join("\n\n"))+'</div>'+
   '<p><b>'+hCount(t)+'字</b>'+(D.chars?'（制限 '+esc(D.chars)+'字）':'')+'</p>';
   var wr=genkouWarn(t);if(wr.length)h+='<ul>'+wr.map(function(x){return '<li>'+esc(x)+'</li>'}).join("")+'</ul>';
   h+='<div id="fout">'+(S.finalOut||"")+'</div><p><button class="btn line" id="feval">全体のアドバイスをもらう（AI）</button> <button class="btn line" id="fedit">← 段落を書き直す</button> <button class="btn line" data-go2="essay">原稿用紙で見る</button></p>'+aiGate()+
@@ -144,6 +155,8 @@ function bindWrite(){
   Array.prototype.forEach.call(app.querySelectorAll("[data-go2]"),function(b){b.onclick=function(){go(b.getAttribute("data-go2"))}});
   bindAiGate(app);
   var rerender=function(){var y=window.scrollY;render();window.scrollTo(0,y)};
+  var th=document.getElementById("theme");if(th)th.oninput=function(){w.theme=th.value};
+  Array.prototype.forEach.call(app.querySelectorAll(".thm"),function(b){b.onclick=function(){var l=THEMES[(D.exam==="小論文")?"小論文":"作文"];w.theme=l[+b.getAttribute("data-i")];rerender()}});
   if(w.stage==="plan"){
     Array.prototype.forEach.call(app.querySelectorAll("input[name=pn]"),function(r){r.onchange=function(){setN(+r.value);S.planOut="";rerender()}});
     Array.prototype.forEach.call(app.querySelectorAll(".plan"),function(a){a.oninput=function(){w.plan[+a.getAttribute("data-i")]=a.value}});
@@ -213,24 +226,46 @@ function logSend(){
 function pageLabel(){
   if(S.tab==="sakubun"||S.tab==="shouron"||S.tab==="genkou"){var L=LESSONS[S.lessonKey];return L.title+"（"+(S.lessonIdx+1)+"ページ目）"+L.pages[S.lessonIdx].t}
   var m={home:"ホーム",research:"志望校リサーチ",input:"素材ノート",sheet:"素材シート",essay:"原稿用紙で書く",write:"段落で書く",quiz:"ミニテスト"};return m[S.tab]||S.tab}
-function qaHtml(){
-  var m=S.qaMode||"",h='<div class="card noprint" id="qabox"><h3>❓ わからないことは、聞いてください</h3>'+
-  '<p><button class="btn '+(m==="ai"?"":"line")+'" id="qaai">🤖 AIに質問</button> <button class="btn '+(m==="sensei"?"":"line")+'" id="qasen">👨‍🏫 野田先生に質問</button></p>';
+/* ---------- フロート質問（AIに質問／野田先生にLINEで質問）全ページ共通 ---------- */
+var QAF_CSS='#qaf{position:fixed;right:12px;bottom:14px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-family:inherit}'+
+'#qaf .fb{border:0;border-radius:999px;padding:12px 16px;font-size:15px;font-weight:700;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer}'+
+'#qaf .fb.ai{background:#2e8fd0}#qaf .fb.ln{background:#06c755}'+
+'#qaf .pn{width:min(380px,calc(100vw - 24px));max-height:78vh;overflow:auto;background:#fff;border:3px solid #2e8fd0;border-radius:18px;padding:14px;box-shadow:0 8px 28px rgba(0,0,0,.3);box-sizing:border-box}'+
+'#qaf .pn.sen{border-color:#06c755}#qaf .pn h3{margin:0 0 6px;font-size:17px}'+
+'#qaf .pn textarea{width:100%;min-height:90px;box-sizing:border-box;font-size:16px;padding:8px;border:2px solid #cfe3f3;border-radius:10px}'+
+'#qaf .x{float:right;border:0;background:#eef3f8;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer}'+
+'@media print{#qaf{display:none}}';
+function qaHtml(){return ""}
+function qaMake(){
+  var f=document.getElementById("qaf");
+  if(!f){
+    if(!document.getElementById("qaf-css")){var st=document.createElement("style");st.id="qaf-css";st.textContent=QAF_CSS;document.head.appendChild(st)}
+    f=document.createElement("div");f.id="qaf";f.className="noprint";document.body.appendChild(f)}
+  return f}
+function qaDraw(){
+  var q0=document.getElementById("qaq");if(q0&&q0.value!=null&&S.qaMode)S.qaText=q0.value;
+  var f=qaMake(),m=S.qaMode||"";
+  if(!(S.unlocked&&S.consent&&S.pen)){f.style.display="none";return}
+  f.style.display="";
+  var h="";
   if(m==="ai"){
-    h+=aiGate()+'<textarea id="qaq" style="min-height:70px" placeholder="例：「きっかけ」が思いつきません。どう考えたらいいですか。">'+esc(S.qaText||"")+'</textarea>'+
+    h+='<div class="pn"><button class="x" id="qax">×</button><h3>🤖 AIに質問</h3>'+aiGate()+
+    '<textarea id="qaq" placeholder="例：「きっかけ」が思いつきません。どう考えたらいいですか。">'+esc(S.qaText||"")+'</textarea>'+
     '<p><button class="btn" id="qago">AIに質問する</button></p><div id="qaans">'+(S.qaAns||"")+'</div>'+
-    (aiOn()?"":'<div class="tip">AIへの質問は、準備ができたら使えるようになります。いまは「野田先生に質問」をお使いください。</div>')}
+    (aiOn()?"":'<div class="tip">AIへの質問は、準備ができたら使えるようになります。いまは「野田先生にLINEで質問」をお使いください。</div>')+
+    '<p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
   if(m==="sensei"){
-    h+='<textarea id="qaq" style="min-height:70px" placeholder="先生に聞きたいことを書きます">'+esc(S.qaText||"")+'</textarea>'+
-    '<div class="ok"><b>返信は最大3営業日以内です。</b>できるだけ早く返信します。</div><p><button class="btn" id="qago">野田先生に送る</button></p>'}
-  return h+'<p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
-function bindQA(){
-  var ai=document.getElementById("qaai"),se=document.getElementById("qasen");if(!ai)return;
-  var rr=function(){var y=window.scrollY;render();window.scrollTo(0,y)};
+    h+='<div class="pn sen"><button class="x" id="qax">×</button><h3>💬 野田先生にLINEで質問</h3>'+
+    '<textarea id="qaq" placeholder="先生に聞きたいことを書きます">'+esc(S.qaText||"")+'</textarea>'+
+    '<div class="ok"><b>返信は最大3営業日以内です。</b>できるだけ早く返信します。</div>'+
+    '<p><button class="btn" id="qago">LINEで野田先生に送る</button></p><p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
+  h+='<div><button class="fb ai" id="qaai">🤖 AIに質問</button> <button class="fb ln" id="qasen">💬 先生にLINEで質問</button></div>';
+  f.innerHTML=h;
   var keep=function(){var q=document.getElementById("qaq");if(q)S.qaText=q.value};
-  ai.onclick=function(){keep();S.qaMode=S.qaMode==="ai"?"":"ai";S.qaAns="";rr()};
-  se.onclick=function(){keep();S.qaMode=S.qaMode==="sensei"?"":"sensei";rr()};
-  bindAiGate(document.getElementById("qabox"));
+  document.getElementById("qaai").onclick=function(){keep();S.qaMode=S.qaMode==="ai"?"":"ai";S.qaAns="";qaDraw()};
+  document.getElementById("qasen").onclick=function(){keep();S.qaMode=S.qaMode==="sensei"?"":"sensei";qaDraw()};
+  var x=document.getElementById("qax");if(x)x.onclick=function(){keep();S.qaMode="";qaDraw()};
+  Array.prototype.forEach.call(f.querySelectorAll(".aiok"),function(c){c.onchange=function(){keep();S.aiok=c.checked;qaDraw()}});
   var go=document.getElementById("qago");if(!go)return;
   go.onclick=function(){
     var q=document.getElementById("qaq").value;S.qaText=q;
@@ -238,12 +273,13 @@ function bindQA(){
     if(hasPII(q)){alert("電話番号・住所・メールアドレスのような文字が入っています。消してください。");return}
     if(S.qaMode==="sensei"){
       lineSend("【質問】\nペンネーム："+(S.pen||"")+"\nページ："+pageLabel()+"\n\n"+q+"\n\n※返信は最大3営業日以内です。できるだけ早く返信します。");return}
-    if(!aiOn()){alert("AIへの質問は、まだ準備中です。野田先生に質問してください。");return}
+    if(!aiOn()){alert("AIへの質問は、まだ準備中です。野田先生にLINEで質問してください。");return}
     if(!S.aiok){alert("AIを使うには、「承知しました」にチェックを入れてください。");return}
-    S.qaAns='<div class="tip">AIが考えています…</div>';rr();
+    S.qaAns='<div class="tip">AIが考えています…</div>';qaDraw();
     var p=baseCtx();p.action="ask";p.page=pageLabel();p.question=q;
-    aiCall(p,function(j){S.qaAns=(j&&j.ok!==false&&j.text)?'<div class="ok">'+nl(j.text)+'<p class="small">'+esc(DISCLAIMER)+'</p></div>':evalHtml(j);rr()})}
+    aiCall(p,function(j){S.qaAns=(j&&j.ok!==false&&j.text)?'<div class="ok">'+nl(j.text)+'<p class="small">'+esc(DISCLAIMER)+'</p></div>':evalHtml(j);qaDraw()})}
 }
+function bindQA(){qaDraw()}
 
 /* ---------- 職歴（追加・修正・削除） ---------- */
 function jobsList(){if(!D.jobs)D.jobs=[];return D.jobs}

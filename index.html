@@ -500,6 +500,7 @@ function lineText(){
   A("ペンネーム："+(S.pen||""));
   var hs=hLoad().filter(function(r){return r.n!==no});if(hs.length)A("これまでの提出："+hs.map(function(r){return "第"+r.n+"回("+hDate(r.at)+" "+hCount(r.D.essay)+"字)"}).join("、"));
   A("志望校："+(S.sel.length?S.sel.map(function(id){return byId(id).name}).join("、"):"（未登録）"));
+  if(D.W&&D.W.theme)A("題材："+D.W.theme);
   A("入試の形式："+(D.exam||"")+"　字数："+(D.chars||"")+"字　制限時間："+(D.mins||"")+"分");
   A("\n＜これまでの質問への回答（素材ノート）＞");
   A(sheetText());
