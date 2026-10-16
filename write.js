@@ -259,12 +259,12 @@ function qaDraw(){
     h+='<div class="pn sen"><button class="x" id="qax">×</button><h3>野田先生にLINEで質問</h3>'+
     '<textarea id="qaq" placeholder="先生に聞きたいことを書きます">'+esc(S.qaText||"")+'</textarea>'+
     '<div class="ok"><b>返信は最大3営業日以内です。</b>できるだけ早く返信します。</div>'+
-    '<p><button class="btn" id="qago">LINEで野田先生に送る</button></p><p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
-  h+='<div><button class="fb ai" id="qaai">🤖 AIに質問</button> <button class="fb ln" id="qasen">先生にLINEで質問</button></div>';
+    '<p><button class="btn" id="qago">LINEで野田先生に送る</button> <button class="btn line" id="qa2ai">← AIの質問にもどる</button></p><p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
+  h+='<div><button class="fb ai" id="qaai">🤖 AIに質問</button></div>';
   f.innerHTML=h;
   var keep=function(){var q=document.getElementById("qaq");if(q)S.qaText=q.value};
   document.getElementById("qaai").onclick=function(){keep();S.qaMode=S.qaMode==="ai"?"":"ai";S.qaAns="";qaDraw()};
-  document.getElementById("qasen").onclick=function(){keep();S.qaMode=S.qaMode==="sensei"?"":"sensei";qaDraw()};
+  var t3=document.getElementById("qa2ai");if(t3)t3.onclick=function(){keep();S.qaMode="ai";qaDraw()};
   var t2=document.getElementById("qa2sen");if(t2)t2.onclick=function(){keep();S.qaMode="sensei";qaDraw()};
   var x=document.getElementById("qax");if(x)x.onclick=function(){keep();S.qaMode="";qaDraw()};
   Array.prototype.forEach.call(f.querySelectorAll(".aiok"),function(c){c.onchange=function(){keep();S.aiok=c.checked;qaDraw()}});
