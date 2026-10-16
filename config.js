@@ -17,4 +17,7 @@ var LINE_CFG = { oaId: "@735itfta" };
 // apps-script/Code.gs を Google Apps Script に貼りつけて公開すると、URLができます。
 // そのURLを endpoint の " " の中に入れると、AIの質問・評価・アドバイスと、
 // スプレッドシートへの記録が動きます。空のあいだは「かんたんチェック（AIなし）」だけが動きます。
-var AI_CFG = { endpoint: "" };
+var AI_CFG = {
+  endpoint: "https://script.google.com/macros/s/AKfycbwEdhwe0zFOshBvz_S9skAbhdpVqIfIZijwL9VmW01XW2Cz50GTu6kh_9ViD02-8EMs_Q/exec",
+  ai: false   // AIの鍵（APIキー）を入れたら true に変えます。false の間は「かんたんチェック」が動き、シートへの保存だけ働きます。
+};

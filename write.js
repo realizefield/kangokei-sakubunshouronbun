@@ -11,9 +11,11 @@ function draftLoad(){ try{var o=JSON.parse(localStorage.getItem(draftKey())||"nu
 setInterval(draftSave,2000);
 
 /* ---------- AIとの通信（Google Apps Script経由） ---------- */
-function aiOn(){return typeof AI_CFG!=="undefined"&&!!AI_CFG.endpoint}
+function sheetOn(){return typeof AI_CFG!=="undefined"&&!!AI_CFG.endpoint}
+function aiOn(){return sheetOn()&&AI_CFG.ai!==false}
 function aiCall(payload,cb){
-  if(!aiOn()){cb({ok:false,off:true});return}
+  var rec=(payload.action==="save"||payload.action==="log");
+  if(!(rec?sheetOn():aiOn())){cb({ok:false,off:true});return}
   payload.pen=S.pen||"";
   try{
     fetch(AI_CFG.endpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
@@ -349,7 +351,7 @@ function profileObj(){
     お子さん:(D.kids||"")+(D.kidsN?"（"+D.kidsN+"人）":""),ひとり親:D.single||"",入学後の不安:j(D.worry)+(D.worryText?"／"+D.worryText:""),
     自己PR:D.pr||"",頑張ったこと:D.effort||"",研究:D.research||"",なりたい看護師:D.ideal||""}}
 function syncSheet(cb){
-  if(!aiOn()||!S.pen){if(cb)cb({ok:false});return}
+  if(!sheetOn()||!S.pen){if(cb)cb({ok:false});return}
   var all=JSON.stringify(profileObj());
   if(hasPII(all)){if(cb)cb({ok:false});return}
   aiCall({action:"save",profile:profileObj(),round:hNextNo()},function(j){if(cb)cb(j)})}
