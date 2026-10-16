@@ -143,13 +143,13 @@ pre.ex{white-space:pre-wrap;font-family:inherit;background:var(--blue-l);border-
 <nav id="nav" class="hide"></nav>
 <main id="app"></main>
 
-<script src="config.js?v=20261016f"></script>
-<script src="gate.js?v=20261016f"></script>
-<script src="schools.js?v=20261016f"></script>
-<script src="features.js?v=20261016f"></script>
-<script src="lessons.js?v=20261016f"></script>
-<script src="write.js?v=20261016f"></script>
-<script src="quiz.js?v=20261016f"></script>
+<script src="config.js?v=20261016g"></script>
+<script src="gate.js?v=20261016g"></script>
+<script src="schools.js?v=20261016g"></script>
+<script src="features.js?v=20261016g"></script>
+<script src="lessons.js?v=20261016g"></script>
+<script src="write.js?v=20261016g"></script>
+<script src="quiz.js?v=20261016g"></script>
 <script>
 var app=document.getElementById("app"), nav=document.getElementById("nav");
 var S={decided:false,unlocked:false,pen:"",consent:false, tab:"home", kindFilter:"all", sel:[], lessonKey:null, lessonIdx:0, done:{}};
@@ -372,7 +372,7 @@ function viewInput(){
   '<div class="card noprint"><h2>📓 私の素材ノート（B4・二つ折り）</h2><p>スマホで書き込めます。印刷すると、B4用紙の表裏が二つ折りのノートになります。<br><span class="small">書いた内容は、この端末に自動で保存されます。「野田先生に送る」を押すと、先生の記録用シートにも保存されます。</span></p>'+
   '<p><button class="btn" id="pr">🖨 PDFで保存・印刷（B4）</button> <button class="btn line" id="mk">素材シートを作る →</button></p>'+
   '<p class="small">PDFにするとき：印刷画面で「送信先：PDFに保存」を選び、用紙サイズを「B4」、向きを「横」、倍率を「デフォルト」にしてください。スマホで用紙サイズを選べない場合は、下の白紙のPDFを印刷して手書きしてください。</p>'+
-  '<p><a class="btn sun" href="note_blank_B4.pdf" target="_blank" rel="noopener">📄 手書き用の白紙（B4・PDF）を開く</a></p></div>'+
+  '<p><a class="btn sun" href="note_blank_B4.pdf" target="_blank" rel="noopener">📄 手書き用の白紙（B4・PDF）を開く</a><br><span class="small">B4の用紙2枚ぶん（4ページ）です。1・2ページ目が「その1」（表紙・学歴・職歴）、3・4ページ目が「その2」（つらかったこと・自己PR・なりたい看護師）です。両面印刷して、それぞれ二つ折りにします。</span></p></div>'+
   '<div class="notebook"><div class="sheet">'+back+cover+'</div><div class="sheet">'+p2+p3+'</div></div>'}
 function checkPII(){
   var all=Object.keys(D).map(function(k){return Array.isArray(D[k])?D[k].join(" "):D[k]}).join("\n");
