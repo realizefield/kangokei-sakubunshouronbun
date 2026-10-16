@@ -227,7 +227,7 @@ function logSend(){
 /* ---------- すべてのページの「AIに質問／野田先生に質問」 ---------- */
 function pageLabel(){
   if(S.tab==="sakubun"||S.tab==="shouron"||S.tab==="genkou"){var L=LESSONS[S.lessonKey];return L.title+"（"+(S.lessonIdx+1)+"ページ目）"+L.pages[S.lessonIdx].t}
-  var m={home:"ホーム",research:"志望校リサーチ",input:"素材ノート",sheet:"素材シート",essay:"原稿用紙で書く",write:"段落で書く",quiz:"ミニテスト"};return m[S.tab]||S.tab}
+  var m={home:"ホーム",research:"志望校リサーチ",input:"素材ノート",sheet:"素材シート",essay:"原稿用紙で書く",write:"段落で書く",quiz:"ミニテスト",kanji:"漢字・語句"};return m[S.tab]||S.tab}
 /* ---------- フロート質問（AIに質問／野田先生にLINEで質問）全ページ共通 ---------- */
 var QAF_CSS='#qaf{position:fixed;right:12px;bottom:14px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-family:inherit}'+
 '#qaf .fb{border:0;border-radius:999px;padding:12px 16px;font-size:15px;font-weight:700;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer}'+

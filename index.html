@@ -143,13 +143,13 @@ pre.ex{white-space:pre-wrap;font-family:inherit;background:var(--blue-l);border-
 <nav id="nav" class="hide"></nav>
 <main id="app"></main>
 
-<script src="config.js?v=20261016h"></script>
-<script src="gate.js?v=20261016h"></script>
-<script src="schools.js?v=20261016h"></script>
-<script src="features.js?v=20261016h"></script>
-<script src="lessons.js?v=20261016h"></script>
-<script src="write.js?v=20261016h"></script>
-<script src="quiz.js?v=20261016h"></script>
+<script src="config.js?v=20261016i"></script>
+<script src="gate.js?v=20261016i"></script>
+<script src="schools.js?v=20261016i"></script>
+<script src="features.js?v=20261016i"></script>
+<script src="lessons.js?v=20261016i"></script>
+<script src="write.js?v=20261016i"></script>
+<script src="quiz.js?v=20261016i"></script>
 <script>
 var app=document.getElementById("app"), nav=document.getElementById("nav");
 var S={decided:false,unlocked:false,pen:"",consent:false, tab:"home", kindFilter:"all", sel:[], lessonKey:null, lessonIdx:0, done:{}};
@@ -164,7 +164,7 @@ function stopped(s){return /募集停止|閉校/.test(s.exam+s.message)&&s.kind=
 var PII=[/0\d{1,4}[-ー−\s]?\d{1,4}[-ー−\s]?\d{3,4}/, /\d{3}[-ー−]\d{4}/, /[\w.+-]+@[\w-]+\.[\w.]+/, /〒/, /(県|市|町|村)[^\s]{0,8}(\d+丁目|\d+番地|\d+-\d+)/];
 function hasPII(t){for(var i=0;i<PII.length;i++)if(PII[i].test(t||""))return true;return false}
 
-var TABS=[["home","🏠 ホーム"],["sakubun","✏️ 作文の基礎"],["shouron","📝 小論文の基礎"],["genkou","🗒 原稿用紙のルール"],["quiz","🎯 ミニテスト"],["research","🏫 志望校リサーチ"],["input","📓 素材ノート"],["sheet","📄 素材シート"],["write","🪜 段落で書く"],["essay","✍ 原稿用紙で書く"]];
+var TABS=[["home","🏠 ホーム"],["sakubun","✏️ 作文の基礎"],["shouron","📝 小論文の基礎"],["genkou","🗒 原稿用紙のルール"],["quiz","🎯 ミニテスト"],["kanji","📚 漢字・語句"],["research","🏫 志望校リサーチ"],["input","📓 素材ノート"],["sheet","📄 素材シート"],["write","🪜 段落で書く"],["essay","✍ 原稿用紙で書く"]];
 function drawNav(){
   nav.className=(S.unlocked&&S.consent&&S.pen)?"":"hide";
   nav.innerHTML=TABS.map(function(t){return '<button data-t="'+t[0]+'" class="'+(S.tab===t[0]?"on":"")+'">'+t[1]+'</button>'}).join("");
@@ -178,9 +178,9 @@ function render(){
   if(!S.unlocked){app.innerHTML=viewGate();bindGate();return}
   if(!S.consent){app.innerHTML=viewConsent();bindConsent();return}
   if(!S.pen){app.innerHTML=viewPen();bindPen();return}
-  var v={home:viewHome,sakubun:viewLesson,shouron:viewLesson,genkou:viewLesson,quiz:viewQuiz,research:viewResearch,input:viewInput,sheet:viewSheet,write:viewWrite,essay:viewEssay}[S.tab];
+  var v={home:viewHome,sakubun:viewLesson,shouron:viewLesson,genkou:viewLesson,quiz:viewQuiz,kanji:viewKanjiLink,research:viewResearch,input:viewInput,sheet:viewSheet,write:viewWrite,essay:viewEssay}[S.tab];
   app.innerHTML=v()+qaHtml();
-  var b={home:bindHome,sakubun:bindLesson,shouron:bindLesson,genkou:bindLesson,quiz:bindQuiz,research:bindResearch,input:bindInput,sheet:bindSheet,write:bindWrite,essay:bindEssay}[S.tab];
+  var b={home:bindHome,sakubun:bindLesson,shouron:bindLesson,genkou:bindLesson,quiz:bindQuiz,kanji:function(){},research:bindResearch,input:bindInput,sheet:bindSheet,write:bindWrite,essay:bindEssay}[S.tab];
   if(b)b();
   bindQA();
 }
@@ -215,6 +215,7 @@ function viewHome(){
              ["sakubun","✏️","② 作文の基礎","短く、具体的に、4つの段落で書く練習です。"],
              ["shouron","📝","③ 小論文の基礎","意見と理由を、型にそって書く練習です。"],
              ["quiz","🎯","③-2 ミニテスト","基礎を4択で確認。正解すると花吹雪が出ます。ミニテスト2は「この場合どうする？」です。"],
+             ["kanji","📚","③-3 漢字・語句","高校入試・高認・看護系レベルの漢字と語句を、ページごとに練習します。"],
              ["input","📓","④ 素材ノートに書く","B4二つ折りのノートに、経験・つらかったこと・強みを書き出します。スマホで書いて、印刷もできます。"],
              ["sheet","📄","⑤ 素材シートを作る","入力内容と志望校のキーワードをつなぎ、作文の下書きに進みます。"],
              ["write","🪜","⑥ 段落で書く","どう書くか（段落構成）を決めて、1段落ずつ書きます。アドバイスのボタンつきです。"],
@@ -223,6 +224,10 @@ function viewHome(){
   '<div class="grid two">'+steps.map(function(s){return '<button class="tile" data-go="'+s[0]+'"><span class="ic">'+s[1]+'</span><b>'+s[2]+'</b>'+s[3]+'</button>'}).join("")+'</div>'+
   '<p class="small">ペンネーム：<b>'+esc(S.pen)+'</b>　<button class="btn line" id="chpen" style="padding:4px 12px;font-size:13px">変える</button></p>'+'<div class="tip">学校の情報は'+SCHOOLS_UPDATED+'時点の公開資料です。出願前には、必ず各学校の最新の募集要項をご確認ください。</div>'}
 function bindHome(){var cp=document.getElementById("chpen");if(cp)cp.onclick=function(){S.pen="";render()};Array.prototype.forEach.call(app.querySelectorAll("[data-go]"),function(b){b.onclick=function(){go(b.getAttribute("data-go"))}})}
+
+/* ---------- 漢字・語句（外部ページ） ---------- */
+var KANJI_URL="https://realizefield.github.io/j-kanji/kounin-kanji-index.html";
+function viewKanjiLink(){return '<div class="card"><h2>📚 漢字・語句の練習</h2><p>高校入試・高認・看護系レベルの漢字と語句の練習です。作文・小論文で間違えやすい漢字を、ここで固めましょう。</p><p><a class="btn" href="'+KANJI_URL+'" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">漢字・語句の練習ページを開く</a></p><p class="small">新しいタブで開きます。終わったら、このタブにもどってください。</p></div>'}
 
 /* ---------- レッスン ---------- */
 function demoHtml(p){
