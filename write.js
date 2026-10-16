@@ -253,14 +253,14 @@ function qaDraw(){
     '<textarea id="qaq" placeholder="例：「きっかけ」が思いつきません。どう考えたらいいですか。">'+esc(S.qaText||"")+'</textarea>'+
     '<p><button class="btn" id="qago">AIに質問する</button></p><div id="qaans">'+(S.qaAns||"")+'</div>'+
     (aiOn()?"":'<div class="tip">AIへの質問は、準備ができたら使えるようになります。いまは「野田先生にLINEで質問」をお使いください。</div>')+
-    '<div class="ok" style="margin-top:10px;background:#e8f8ee;border-color:#06c755"><b>AIで解決しなかったときは、次に野田先生に聞けます。</b><br><button class="btn" id="qa2sen" style="background:#06c755;color:#fff;margin-top:6px">💬 野田先生にLINEで質問する（上の質問がそのまま入ります）</button></div>'+
+    '<div class="ok" style="margin-top:10px;background:#e8f8ee;border-color:#06c755"><b>AIで解決しなかったときは、次に野田先生に聞けます。</b><br><button class="btn" id="qa2sen" style="background:#06c755;color:#fff;margin-top:6px">野田先生にLINEで質問する（上の質問がそのまま入ります）</button></div>'+
     '<p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
   if(m==="sensei"){
-    h+='<div class="pn sen"><button class="x" id="qax">×</button><h3>💬 野田先生にLINEで質問</h3>'+
+    h+='<div class="pn sen"><button class="x" id="qax">×</button><h3>野田先生にLINEで質問</h3>'+
     '<textarea id="qaq" placeholder="先生に聞きたいことを書きます">'+esc(S.qaText||"")+'</textarea>'+
     '<div class="ok"><b>返信は最大3営業日以内です。</b>できるだけ早く返信します。</div>'+
     '<p><button class="btn" id="qago">LINEで野田先生に送る</button></p><p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
-  h+='<div><button class="fb ai" id="qaai">🤖 AIに質問</button> <button class="fb ln" id="qasen">💬 先生にLINEで質問</button></div>';
+  h+='<div><button class="fb ai" id="qaai">🤖 AIに質問</button> <button class="fb ln" id="qasen">先生にLINEで質問</button></div>';
   f.innerHTML=h;
   var keep=function(){var q=document.getElementById("qaq");if(q)S.qaText=q.value};
   document.getElementById("qaai").onclick=function(){keep();S.qaMode=S.qaMode==="ai"?"":"ai";S.qaAns="";qaDraw()};
