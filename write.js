@@ -253,6 +253,7 @@ function qaDraw(){
     '<textarea id="qaq" placeholder="例：「きっかけ」が思いつきません。どう考えたらいいですか。">'+esc(S.qaText||"")+'</textarea>'+
     '<p><button class="btn" id="qago">AIに質問する</button></p><div id="qaans">'+(S.qaAns||"")+'</div>'+
     (aiOn()?"":'<div class="tip">AIへの質問は、準備ができたら使えるようになります。いまは「野田先生にLINEで質問」をお使いください。</div>')+
+    '<div class="ok" style="margin-top:10px;background:#e8f8ee;border-color:#06c755"><b>AIで解決しなかったときは、次に野田先生に聞けます。</b><br><button class="btn" id="qa2sen" style="background:#06c755;color:#fff;margin-top:6px">💬 野田先生にLINEで質問する（上の質問がそのまま入ります）</button></div>'+
     '<p class="small">いまのページ：'+esc(pageLabel())+'</p></div>'}
   if(m==="sensei"){
     h+='<div class="pn sen"><button class="x" id="qax">×</button><h3>💬 野田先生にLINEで質問</h3>'+
@@ -264,6 +265,7 @@ function qaDraw(){
   var keep=function(){var q=document.getElementById("qaq");if(q)S.qaText=q.value};
   document.getElementById("qaai").onclick=function(){keep();S.qaMode=S.qaMode==="ai"?"":"ai";S.qaAns="";qaDraw()};
   document.getElementById("qasen").onclick=function(){keep();S.qaMode=S.qaMode==="sensei"?"":"sensei";qaDraw()};
+  var t2=document.getElementById("qa2sen");if(t2)t2.onclick=function(){keep();S.qaMode="sensei";qaDraw()};
   var x=document.getElementById("qax");if(x)x.onclick=function(){keep();S.qaMode="";qaDraw()};
   Array.prototype.forEach.call(f.querySelectorAll(".aiok"),function(c){c.onchange=function(){keep();S.aiok=c.checked;qaDraw()}});
   var go=document.getElementById("qago");if(!go)return;
